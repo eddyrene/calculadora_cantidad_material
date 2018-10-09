@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_markup_model" model="ir.ui.view">
+      <field name="name">sale.order.form.markup</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+          <xpath expr='//field[@name="order_line"]/form/group/group/div/field[@name="product_uom_qty"]' position="after">
+            <div>
+                <field name="id_type" class="oe_inline">
+                    <tree string="Lineas de Proforma" editable = "bottom">
+                        <field name="total_perimetro"/>
+                        <field name="total_area"/>
+                    </tree>
+                </field>
+            </div>
+          </xpath>
+
+          <xpath expr='//field[@name="order_line"]/form/field[@name="state"]' position="after">
+            <sheet>
+            <div class="oe_title">
+            </div>
+                <notebook>
+                    <page string="Proforma">
+                        <field name="id_type_line"/>
+                    </page>
+                </notebook>
+            </sheet>
+          </xpath>
+
+          <xpath expr='//field[@name="order_line"]/tree/field[@name="product_uom_qty"]' position="after">
+            <field name="id_type" domain="[('id','=',False)]"/>
+          </xpath>
+      </field>
+    </record>
+
+    <record id="view_calculadora_proforma_line_tree" model="ir.ui.view">
+        <field name="name">view.calculadora.proforma.line.tree</field>
+        <field name="model">sale.calculadora.proforma.line</field>
+        <field name="arch" type="xml">
+            <form string="Notebook">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="cantidad"/>
+                            <field name="nro_cristal"/>
+                            <field name="base1"/>
+                            <field name="base2"/>
+                            <field name="altura1"/>
+                            <field name="altura2"/>
+                            <field name="descuadre"/>
+                            <field name="perimetro"/>
+                            <field name="area"/>
+                            <field name="peso"/>
+                            <field name="min_vend"/>
+                        </group>
+                        <group >
+                            <field name="pulido"/>
+                            <field name="entalle"/>
+                            <field name="biselado"/>
+                            <field name="lavado"/>
+                            <field name="perforaciones"/>
+                            <field name="plantilla"/>
+                            <field name="embalado"/>
+                            <field name="insulado"/>
+                            <field name="arenado"/>
+                            <field name="image" widget="image" height="100"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     <record id="view_calculadora_proforma_line_tree2" model="ir.ui.view">
+        <field name="name">view.calculadora.proforma.line.tree2</field>
+        <field name="model">sale.calculadora.proforma.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="cantidad"/>
+                <field name="nro_cristal"/>
+                <field name="base1"/>
+                <field name="base2"/>
+                <field name="altura1"/>
+                <field name="altura2"/>
+                <field name="descuadre"/>
+                <field name="perimetro"/>
+                <field name="area"/>
+                <field name="peso"/>
+                <field name="min_vend"/>
+                <field name="pulido"/>
+                <field name="entalle"/>
+                <field name="biselado"/>
+                <field name="lavado"/>
+                <field name="perforaciones"/>
+                <field name="plantilla"/>
+                <field name="embalado"/>
+                <field name="insulado"/>
+                <field name="arenado"/>
+                <field name="image" widget="image" height="64"/>
+            </tree>
+        </field>
+    </record>
+
+     <record model="ir.ui.view" id="view_calculadora_presupuesto_linea_wizard_form">
+            <field name="name">calculadora.presupuesto.linea.wizard.form</field>
+            <field name="model">sale.calculadora.proforma</field>
+            <field name="arch" type="xml">
+                <form string="Wizard">
+                    <group>
+                    </group>
+                    <separator/>
+                        <!--field name="id_line" domain="[('id','=',False)]"/-->
+                        <field name="id_line"/>
+                    <separator/>
+                    <button string="Actualizar" name="cantidad" type="object" class="oe_highlight"/>
+                    <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                        <field name="total_perimetro"/>
+                        <field name="total_area"/>
+                    </group>
+
+                </form>
+            </field>
+    </record>
+
+</odoo>
